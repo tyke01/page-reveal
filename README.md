@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Animated Landing Page Component
 
-## Getting Started
+A React component that creates an engaging landing page with smooth animations, preloader, and text reveal effects using GSAP (GreenSock Animation Platform).
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Animated text reveal with staggered effects
+- Custom preloader integration
+- Page transition animations with banner effects
+- Responsive design with Tailwind CSS
+- Text splitting functionality for granular animation control
+- Smooth transitions and animations using GSAP
+
+## Dependencies
+
+- React
+- GSAP (GreenSock Animation Platform)
+- @gsap/react
+- Next.js
+- Tailwind CSS
+
+## Component Structure
+
+The component consists of two main sections:
+1. A preloader component that runs before the main content
+2. A main content section with animated text elements
+
+## Usage
+
+```jsx
+import MainPage from './path/to/MainPage';
+
+function App() {
+  return <MainPage />;
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Animation Details
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Text Animations
+The component implements several animation features:
+- Initial text state is set with Y-offset, opacity 0, and 90-degree rotation
+- Text reveal animation includes:
+  - Vertical movement to original position
+  - Rotation to 0 degrees
+  - Fade-in effect
+  - Staggered timing for each text element
+  - "Back out" easing for smooth motion
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Page Transitions
+The component includes two main transition functions:
 
-## Learn More
+#### animatePageIn
+```javascript
+animatePageIn()
+```
+Handles the entrance animation when navigating to a page:
+- Animates four banner elements sequentially
+- Uses GSAP timeline for coordinated animations
+- Slides banners up with staggered timing
+- Requires banner elements with IDs: banner-1, banner-2, banner-3, banner-4
 
-To learn more about Next.js, take a look at the following resources:
+#### animatePageOut
+```javascript
+animatePageOut(href: string, router: AppRouterInstance)
+```
+Handles the exit animation when navigating away from a page:
+- Takes destination URL and Next.js router instance as parameters
+- Animates four banner elements sequentially
+- Slides banners down with staggered timing
+- Automatically navigates to the next page on animation completion
+- Requires banner elements with IDs: banner-1, banner-2, banner-3, banner-4
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Props
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This component doesn't accept any props directly, but contains:
 
-## Deploy on Vercel
+- `PreLoader` component which accepts:
+  - `onComplete`: Callback function triggered when preloader finishes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Styling
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The component uses Tailwind CSS classes for styling:
+- Centered layout with flex container
+- Dark purple background (bg-purple-950)
+- White text
+- Responsive text sizing
+- Mobile-friendly design
+
+## Requirements
+
+- Next.js 13+ (using app directory structure)
+- Required components:
+  - `@/components/pre-loader`
+  - `@/components/text-splitter`
+- Banner elements in HTML structure with IDs:
+  - banner-1
+  - banner-2
+  - banner-3
+  - banner-4
+
+## Notes
+
+- Uses the 'use client' directive for client-side rendering
+- Implements useGSAP hook for GSAP animations
+- Handles preloader state management
+- Includes responsive design considerations
+- Page transitions require proper banner elements in DOM
+- Utilizes Next.js App Router for navigation
