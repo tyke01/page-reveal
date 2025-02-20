@@ -31,7 +31,7 @@ const MainPage = () => {
   }, [preloaderComplete]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#121216] text-white">
+    <div className="flex items-center justify-center min-h-screen bg-purple-950 text-white">
       <PreLoader onComplete={handlePreloaderComplete} />
 
       <section
@@ -41,7 +41,7 @@ const MainPage = () => {
         <h1 className="hero-header text-6xl text-balance overflow-hidden">
           <TextSplitter text="Discover Good Stuff" className="text-reveal" />
         </h1>
-        <p className="animated-text text-lg md:text-2xl opacity-0">
+        <p className="animated-text text-lg md:text-2xl">
           Let&apos;s explore something amazing!
         </p>
       </section>
